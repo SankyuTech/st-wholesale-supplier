@@ -7,7 +7,7 @@ function fetchData(){
 
     let supplier_id = sessionStorage.getItem("supplier_id");
 
-    const url = "https://www.st-wholesale.sankyutech.com.my/api/products/add/data";
+    const url = apiRouteSetting('products/add/data');
     const detail ={
         supplier_id:supplier_id
     }
@@ -101,7 +101,7 @@ function addProduct(){
     if(factory && type && weight && category && designs && purities && wm_capital_amount && wm_sales_amont && wm_capital_type && wm_sales_type){
 
 
-        const url = "https://www.st-wholesale.sankyutech.com.my/api/products/add";
+        const url = apiRouteSetting('products/add');
 
         const detail ={
             category:category,
@@ -128,7 +128,7 @@ function addProduct(){
     
             let supplier_id = sessionStorage.getItem("supplier_id");
 
-            const url = "https://www.st-wholesale.sankyutech.com.my/api/get-print-sku";
+            const url = apiRouteSetting('get-print-sku');
             const detail = {
                 supplier_id:supplier_id,
                 product_id:response.data

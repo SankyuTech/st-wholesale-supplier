@@ -4,7 +4,7 @@ const axios = require('axios').default;
 function loadInitialData(){
     let supplier_id = sessionStorage.getItem("supplier_id");
 
-    const url = "https://www.st-wholesale.sankyutech.com.my/api/products";
+    const url = apiRouteSetting('products');
     const detail ={
         supplier_id:supplier_id
     }
@@ -20,7 +20,7 @@ function loadInitialData(){
 
         let products = response.data
 
-        console.log(products);
+        // console.log(products);
 
         var table = document.getElementById('tbody')
 
@@ -67,7 +67,7 @@ function printLabel(id){
 
     let supplier_id = sessionStorage.getItem("supplier_id");
 
-    const url = "https://www.st-wholesale.sankyutech.com.my/api/get-print-sku";
+    const url = apiRouteSetting('get-print-sku');
     const detail = {
         supplier_id:supplier_id,
         product_id:id

@@ -10,7 +10,8 @@ function login(){
 
     if(email && password){
 
-        const url = "https://www.st-wholesale.sankyutech.com.my/api/login";
+        const url = apiRouteSetting('login');
+
         const detail ={
             email:email,
             password:password
