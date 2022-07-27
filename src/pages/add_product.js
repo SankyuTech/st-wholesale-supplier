@@ -6,13 +6,11 @@ var $ = require( "jquery" );
 function fetchData(){
 
     let supplier_id = sessionStorage.getItem("supplier_id");
-    let printer_ip = sessionStorage.getItem("printer_ip");
 
-    const url = "https://st-w.sankyutech.com.my/api/products/add/data";
+    const url = "https://www.st-wholesale.sankyutech.com.my/api/products/add/data";
     const detail ={
         supplier_id:supplier_id
     }
-
 
     axios({
             
@@ -103,7 +101,7 @@ function addProduct(){
     if(factory && type && weight && category && designs && purities && wm_capital_amount && wm_sales_amont && wm_capital_type && wm_sales_type){
 
 
-        const url = "https://st-w.sankyutech.com.my/api/products/add";
+        const url = "https://www.st-wholesale.sankyutech.com.my/api/products/add";
 
         const detail ={
             category:category,
@@ -129,9 +127,8 @@ function addProduct(){
 
     
             let supplier_id = sessionStorage.getItem("supplier_id");
-            let printer_ip = sessionStorage.getItem("printer_ip");
 
-            const url = "https://st-w.sankyutech.com.my/api/get-print-sku";
+            const url = "https://www.st-wholesale.sankyutech.com.my/api/get-print-sku";
             const detail = {
                 supplier_id:supplier_id,
                 product_id:response.data
@@ -145,9 +142,9 @@ function addProduct(){
 
             }).then(function (response){
 
-                let zpl = response.data
+                let zpl = response.data.zpl
 
-                const HOST = printer_ip;
+                const HOST = response.data.setting.printer_ip;
                 const PORT = 9100;
 
                 let client = net.connect(PORT, HOST, ()=>{

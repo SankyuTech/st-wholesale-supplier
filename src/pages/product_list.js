@@ -4,7 +4,7 @@ const axios = require('axios').default;
 function loadInitialData(){
     let supplier_id = sessionStorage.getItem("supplier_id");
 
-    const url = "https://st-w.sankyutech.com.my/api/products";
+    const url = "https://www.st-wholesale.sankyutech.com.my/api/products";
     const detail ={
         supplier_id:supplier_id
     }
@@ -66,9 +66,8 @@ function loadInitialData(){
 function printLabel(id){
 
     let supplier_id = sessionStorage.getItem("supplier_id");
-    let printer_ip = sessionStorage.getItem("printer_ip");
 
-    const url = "https://st-w.sankyutech.com.my/api/get-print-sku";
+    const url = "https://www.st-wholesale.sankyutech.com.my/api/get-print-sku";
     const detail = {
         supplier_id:supplier_id,
         product_id:id
@@ -82,9 +81,9 @@ function printLabel(id){
 
     }).then(function (response){
 
-        let zpl = response.data
+        let zpl = response.data.zpl
 
-        const HOST = printer_ip;
+        const HOST = response.data.setting.printer_ip;
         const PORT = 9100;
 
         let client = net.connect(PORT, HOST, ()=>{

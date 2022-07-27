@@ -10,7 +10,7 @@ function login(){
 
     if(email && password){
 
-        const url = "https://st-w.sankyutech.com.my/api/login";
+        const url = "https://www.st-wholesale.sankyutech.com.my/api/login";
         const detail ={
             email:email,
             password:password
@@ -30,25 +30,25 @@ function login(){
                 let supplier_id = response.data.user.supplier_id;
                 sessionStorage.setItem("supplier_id", supplier_id);
 
-                const url = "https://st-w.sankyutech.com.my/api/printer-settings";
+                // const url = "https://st-wholesale.sankyutech.com.my/api/printer-settings";
 
-                const detail ={
-                    supplier_id:supplier_id
-                }
+                // const detail ={
+                //     supplier_id:supplier_id
+                // }
 
-                axios({
-                    method: 'post',
-                    url: url,
-                    data:detail
+                // axios({
+                //     method: 'post',
+                //     url: url,
+                //     data:detail
 
-                }).then(function (response){
+                // }).then(function (response){
             
-                    let printerIp = response.data.printer_ip;
+                //     let printerIp = response.data.printer_ip;
 
-                    sessionStorage.setItem("printer_ip", printerIp);
+                //     sessionStorage.setItem("printer_ip", printerIp);
 
 
-                }).catch(err=>console.log(err))
+                // }).catch(err=>console.log(err))
                 
                 window.location.href = "./pages/product_list.html";
 

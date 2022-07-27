@@ -125,12 +125,39 @@
 
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.3"></script>
 
+
   <script>
+
+        const axios = require('axios').default;
+
         function fetchData(){
 
-            let printerIp = sessionStorage.getItem("printer_ip");
 
-            document.getElementById("ip-printer").value = printerIp;
+        let supplier_id = sessionStorage.getItem("supplier_id");
+
+        const url = "https://www.st-wholesale.sankyutech.com.my/api/printer-settings";
+        
+        const detail = {
+            supplier_id:supplier_id
+        }
+
+        axios({
+                
+            method: 'post',
+            url: url,
+            data:detail
+
+        }).then(function (response){
+
+            document.getElementById("ip-printer").value = response.data.printer_ip;
+
+
+        }).catch(err=>console.log(err))
+
+
+            // let printerIp = sessionStorage.getItem("printer_ip");
+
+            // document.getElementById("ip-printer").value = printerIp;
    
         }
   </script>
