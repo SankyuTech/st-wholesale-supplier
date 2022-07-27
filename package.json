@@ -2,7 +2,7 @@
   "name": "STWholesale",
   "productName": "STWholesale",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Wholesale System For Supplier",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",

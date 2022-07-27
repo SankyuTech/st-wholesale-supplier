@@ -68,6 +68,7 @@ function printLabel(id){
     let supplier_id = sessionStorage.getItem("supplier_id");
 
     const url = apiRouteSetting('get-print-sku');
+
     const detail = {
         supplier_id:supplier_id,
         product_id:id
@@ -81,7 +82,7 @@ function printLabel(id){
 
     }).then(function (response){
 
-        let zpl = response.data.zpl
+        let zpl = response.data.zpl;
 
         const HOST = response.data.setting.printer_ip;
         const PORT = 9100;
