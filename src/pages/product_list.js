@@ -83,6 +83,8 @@ function printLabel(id){
     }).then(function (response){
 
         let zpl = response.data.zpl;
+        console.log('product-list');
+        console.log(zpl);
 
         const HOST = response.data.setting.printer_ip;
         const PORT = 9100;

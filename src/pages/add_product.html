@@ -108,7 +108,7 @@
 
                       <div class="col-3 mb-3">
                         <label>Weight</label>
-                        <input type="number" class="form-control" id="weight">
+                        <input type="number" class="form-control" id="weight" onchange="calculateBack()">
                       </div>
 
 
@@ -144,7 +144,8 @@
 
                       <div class="col-3 mb-3">
                         <label>Workmanship Capital Amount</label>
-                        <input type="number" class="form-control form-control" id="capital_amount">
+                        <input type="number" class="form-control form-control" id="capital_amount" onchange="calculateBack()">
+                        <small id="wm_g_capital"></small>
                       </div>
 
                       <div class="col-3 mb-3">
@@ -159,12 +160,15 @@
 
                       <div class="col-3 mb-3">
                         <label>Workmanship Sales Amount</label>
-                        <input type="number" class="form-control form-control" id="sales-amount">
+                        <input type="number" class="form-control form-control" id="sales-amount" onchange="calculateBack()">
+                         <small id="wm_g_sales"></small>
                       </div>
 
                     </div>
                     <div style="text-align: right;">
+                      <button type="button" onclick="calculateBack()" class="btn btn-lg btn-dark btn-lg mb-0">Calculate</button>
                       <button type="button" onclick="addProduct()" class="btn btn-lg btn-primary btn-lg mb-0">Add Product</button>
+
                     </div>
                   </form>
 
@@ -198,6 +202,67 @@
 
   <script src="add_product.js"></script>
   <script src="../global.js"></script>
+
+  <script>
+
+    function calculateCapital(){
+
+    var capital_radio = document.getElementsByName('wm_capital');
+    
+    for(i = 0; i < capital_radio.length; i++) {
+        if(capital_radio[i].checked)
+        var wm_capital_type = capital_radio[i].value
+    }
+
+      var weight = document.getElementById("weight").value;
+
+      if(wm_capital_type == 0){
+
+        var capital_g =  document.getElementById("capital_amount").value;
+
+      }else{
+
+        var capital_g =  document.getElementById("capital_amount").value / weight;
+
+      }
+
+      document.getElementById("wm_g_capital").innerHTML = "RM" + capital_g + "/g";
+
+    }
+
+
+    function calculateSales(){
+
+    var sales_radio = document.getElementsByName('wm_sales');
+    
+    for(i = 0; i < sales_radio.length; i++) {
+        if(sales_radio[i].checked)
+        var wm_sales_type = sales_radio[i].value
+    }
+
+      var weight = document.getElementById("weight").value;
+
+      if(wm_sales_type == 0){
+
+        var sales_g =  document.getElementById("sales-amount").value;
+
+      }else{
+
+        var sales_g =  document.getElementById("sales-amount").value / weight;
+
+      }
+
+      document.getElementById("wm_g_sales").innerHTML = "RM" + sales_g + "/g";
+
+    }
+
+    function calculateBack(){
+        calculateCapital();
+        calculateSales();
+    }
+    
+
+  </script>
 </body>
 
 </html>

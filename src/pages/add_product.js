@@ -126,47 +126,30 @@ function addProduct(){
         }).then(function (response){
 
     
-            let supplier_id = sessionStorage.getItem("supplier_id");
+            let zpl = response.data.zpl
 
-            const url = apiRouteSetting('get-print-sku');
-            const detail = {
-                supplier_id:supplier_id,
-                product_id:response.data
-            }
+            console.log('add product');
+        console.log(zpl);
 
-            axios({
-                    
-                method: 'post',
-                url: url,
-                data:detail
+            const HOST = response.data.setting.printer_ip;
+            const PORT = 9100;
 
-            }).then(function (response){
+            let client = net.connect(PORT, HOST, ()=>{
+              console.log('Printing labels...');
+              client.write(zpl);
+              client.end();
 
-                let zpl = response.data.zpl
+            });
 
-                const HOST = response.data.setting.printer_ip;
-                const PORT = 9100;
+            client.on('data', (data)=>{
+              console.log(data.toString());
+              console.log('socket.bytesRead is ' + client.bytesRead);
+              client.end();
+            });
 
-                let client = net.connect(PORT, HOST, ()=>{
-                  console.log('Printing labels...');
-                  client.write(zpl);
-                  client.end();
-
-                });
-
-                client.on('data', (data)=>{
-                  console.log(data.toString());
-                  console.log('socket.bytesRead is ' + client.bytesRead);
-                  client.end();
-                });
-
-                client.on('end', ()=>{
-                  console.log('client disconnected');
-                });
-
-
-
-            }).catch(err=>console.log(err))
+            client.on('end', ()=>{
+              console.log('client disconnected');
+            });
 
 
 
