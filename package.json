@@ -1,7 +1,7 @@
 {
   "name": "STWholesale",
   "productName": "STWholesale",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wholesale System For Supplier",
   "main": "src/index.js",
   "scripts": {
